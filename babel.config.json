@@ -1,16 +1,22 @@
 {
   "presets": [
-    ["@babel/preset-env", {
-      "targets": {
-        "node": "current"
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current"
+        }
       }
-    }]
+    ]
   ],
-    "plugins": [
-    ["@babel/plugin-transform-modules-commonjs", {
-      "allowTopLevelThis": true,
-      "loose": true,
-      "lazy": true
-    }]
+  "plugins": [
+    [
+      "@babel/plugin-transform-modules-commonjs",
+      {
+        "allowTopLevelThis": true,
+        "loose": true,
+        "lazy": true
+      }
+    ]
   ]
 }
