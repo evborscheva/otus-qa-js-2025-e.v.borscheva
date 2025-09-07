@@ -1,19 +1,22 @@
-// @ts-check
 import config from '../framework/config/configBookstore';
 import { BookService, AuthService } from '../framework';
 import { books } from '../framework/fixtures/Books.json';
 
 describe('Books', () => {
-  const userId = config.userId;
-  const [book1, book2, book3] = books;
-  const isbn = book1.isbn;
+  /*if (books.length < 3) {
+    throw new Error('Массив books должен содержать как минимум 3 элемента');
+  }*/
 
-  let token;
+  const userId = config.userId!;
+  const [book1, book2, book3] = books;
+  const isbn = book1!.isbn;
+
+  let token: any;
 
   beforeAll(async () => {
     const response = await AuthService.generateToken({
       userName: config.username,
-      password: config.password
+      password: config.password,
     });
 
     token = response.data.token;
@@ -25,14 +28,14 @@ describe('Books', () => {
     expect(response.status).toBe(200);
     expect(response.data).toMatchObject({
       isbn: isbn,
-      title: book1.title,
-      subTitle: book1.subTitle,
-      author: book1.author,
-      publish_date: book1.publish_date,
-      publisher: book1.publisher,
-      pages: book1.pages,
+      title: book1!.title,
+      subTitle: book1!.subTitle,
+      author: book1!.author,
+      publish_date: book1!.publish_date,
+      publisher: book1!.publisher,
+      pages: book1!.pages,
       description: expect.any(String),
-      website: expect.any(String)
+      website: expect.any(String),
     });
   });
 
@@ -51,7 +54,7 @@ describe('Books', () => {
       name: 'Добавление 1 книги в коллекцию пользователя',
       isbns: [isbn],
       expectedStatus: 201,
-      result: { books: [{ isbn: isbn }] }
+      result: { books: [{ isbn: isbn }] },
     },
     {
       name: 'Добавление в коллекцию пользователя книги, которая там уже есть',
@@ -59,14 +62,14 @@ describe('Books', () => {
       expectedStatus: 400,
       result: {
         code: '1210',
-        message: "ISBN already present in the User's Collection!"
-      }
+        message: "ISBN already present in the User's Collection!",
+      },
     },
     {
       name: 'Добавление 2 книг в коллекцию пользователя',
-      isbns: [book3.isbn, book2.isbn],
+      isbns: [book3!.isbn, book2!.isbn],
       expectedStatus: 201,
-      result: { books: [{ isbn: book3.isbn }, { isbn: book2.isbn }] }
+      result: { books: [{ isbn: book3!.isbn }, { isbn: book2!.isbn }] },
     },
     {
       name: 'Не указан идентификатор книги при добавлении в коллекцию',
@@ -74,16 +77,16 @@ describe('Books', () => {
       expectedStatus: 400,
       result: {
         code: '1207',
-        message: 'Collection of books required.'
-      }
-    }
+        message: 'Collection of books required.',
+      },
+    },
   ];
 
-  test.each(data)('$name', async ({ isbns, expectedStatus, result }) => {
+  (test.each(data)('$name', async ({ isbns, expectedStatus, result }: any) => {
     const response = await BookService.addList({
       userId,
       isbns,
-      token
+      token,
     });
 
     expect(response.data).toEqual(result);
@@ -91,28 +94,27 @@ describe('Books', () => {
   }),
     test('Удаление книги из коллекции пользователя', async () => {
       const response = await BookService.remove({ isbn, userId, token });
-
       expect(response.status).toBe(204);
-    });
+    }));
 
   test('Заменить книгу в коллекции пользователя', async () => {
     const response = await BookService.replace({
       userId,
-      fromIsbn: book2.isbn,
+      fromIsbn: book2!.isbn,
       toIsbn: isbn,
-      token
+      token,
     });
     expect(response.data).toEqual({
       userId,
       username: config.username,
-      books: [book3, book1]
+      books: [book3, book1],
     });
   });
 
   afterAll(async () => {
     const response = await BookService.removeAll({
       userId,
-      token
+      token,
     });
   });
 });

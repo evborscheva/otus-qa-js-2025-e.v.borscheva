@@ -5,7 +5,7 @@ const scores = {
   Igor: 8
 };
 
-function getScore(object) {
+function getScore(object: any) {
   let sum = 0;
   for (let key in object) {
     sum = sum + object[key];

@@ -1,10 +1,9 @@
-// @ts-check
 import { AuthService, UserService, UserFixture } from '../framework';
 
 describe('Bookstore', () => {
-  let token;
-  let userId;
-  let newUser;
+  let token: any;
+  let userId: any;
+  let newUser: any;
 
   beforeAll(async () => {
     newUser = UserFixture.generateUserCredentials();
@@ -33,7 +32,7 @@ describe('Bookstore', () => {
     expect(response.data).toMatchObject({
       userId: userId,
       username: newUser.userName,
-      books: []
+      books: [],
     });
   });
 

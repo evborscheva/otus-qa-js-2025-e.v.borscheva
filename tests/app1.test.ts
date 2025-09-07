@@ -1,16 +1,17 @@
 const baseUrl = 'https://bookstore.demoqa.com';
+
 describe('Account Service', () => {
   (test('Успешное создание пользователя', async () => {
     const userData = {
       userName: 'string1234568',
-      password: '123QWEggg!'
+      password: '123QWEggg!',
     };
     const response = await fetch(`${baseUrl}/Account/v1/User`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(userData)
+      body: JSON.stringify(userData),
     });
 
     expect(response.status).toBe(201);
@@ -27,14 +28,14 @@ describe('Account Service', () => {
     test('Неуспешное создание пользователя: пользователь уже есть', async () => {
       const userData = {
         userName: 'string1234568',
-        password: '123QWEggg!'
+        password: '123QWEggg!',
       };
       const response = await fetch(`${baseUrl}/Account/v1/User`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(userData),
       });
 
       expect(response.status).toBe(406);
@@ -49,14 +50,14 @@ describe('Account Service', () => {
     test('Неуспешное создание пользователя: пароль не соответствует требованиям', async () => {
       const userData = {
         userName: 'string1234568string',
-        password: '123'
+        password: '123',
       };
       const response = await fetch(`${baseUrl}/Account/v1/User`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(userData),
       });
 
       expect(response.status).toBe(400);
@@ -66,21 +67,21 @@ describe('Account Service', () => {
       expect(responseBody).toHaveProperty('code');
       expect(responseBody).toHaveProperty('message');
       expect(responseBody.message).toBe(
-        "Passwords must have at least one non alphanumeric character, one digit ('0'-'9'), one uppercase ('A'-'Z'), one lowercase ('a'-'z'), one special character and Password must be eight characters or longer."
+        "Passwords must have at least one non alphanumeric character, one digit ('0'-'9'), one uppercase ('A'-'Z'), one lowercase ('a'-'z'), one special character and Password must be eight characters or longer.",
       );
       expect(responseBody.code).not.toBeNull();
     }),
     test('Успешная генерация токена', async () => {
       const userData = {
         userName: 'string1234568',
-        password: '123QWEggg!'
+        password: '123QWEggg!',
       };
       const response = await fetch(`${baseUrl}/Account/v1/GenerateToken`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(userData),
       });
 
       expect(response.status).toBe(200);
@@ -91,7 +92,6 @@ describe('Account Service', () => {
       expect(responseBody).toHaveProperty('expires');
       expect(responseBody).toHaveProperty('status');
       expect(responseBody).toHaveProperty('result');
-
       expect(responseBody.result).toBe('User authorized successfully.');
       expect(responseBody.token).not.toBeNull();
       expect(responseBody.status).toBe('Success');
@@ -100,14 +100,14 @@ describe('Account Service', () => {
     test('Неуспешная генерация токена: передано пустое значение пароля', async () => {
       const userData = {
         userName: 'string1234568',
-        password: ''
+        password: '',
       };
       const response = await fetch(`${baseUrl}/Account/v1/GenerateToken`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(userData),
       });
 
       expect(response.status).toBe(400);
@@ -116,21 +116,20 @@ describe('Account Service', () => {
 
       expect(responseBody).toHaveProperty('code');
       expect(responseBody).toHaveProperty('message');
-
       expect(responseBody.message).toBe('UserName and Password required.');
       expect(responseBody.code).not.toBeNull();
     }),
     test('Неуспешная генерация токена: передан неверный пароль', async () => {
       const userData = {
         userName: 'string1234568',
-        password: '123QWE'
+        password: '123QWE',
       };
       const response = await fetch(`${baseUrl}/Account/v1/GenerateToken`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(userData),
       });
 
       expect(response.status).toBe(200);
@@ -141,7 +140,6 @@ describe('Account Service', () => {
       expect(responseBody).toHaveProperty('expires');
       expect(responseBody).toHaveProperty('status');
       expect(responseBody).toHaveProperty('result');
-
       expect(responseBody.result).toBe('User authorization failed.');
       expect(responseBody.token).toBeNull();
       expect(responseBody.status).toBe('Failed');

@@ -202,6 +202,7 @@ const config = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
+   // @ts-expect-error TS(1117): An object literal cannot have multiple properties ... Remove this comment to see the full error message
    testEnvironment: 'allure-jest/node',
  testEnvironmentOptions: {
  resultsDir: 'reports/allure-results'
