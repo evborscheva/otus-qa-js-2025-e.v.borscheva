@@ -22,14 +22,14 @@ const transformHeaders = (headers: any): Record<string, string> => {
 const getUser = async ({ userId, token }: any): Promise<ApiResponse> => {
   const response = await client.get(`/Account/v1/User/${userId}`, {
     headers: {
-      Authorization: `Bearer ${token}`,
-    },
+      Authorization: `Bearer ${token}`
+    }
   });
 
   return {
     headers: transformHeaders(response.headers),
     status: response.status,
-    data: response.data,
+    data: response.data
   };
 };
 
@@ -40,25 +40,25 @@ const removeUser = async ({ userId, token }: any) => {
   return {
     headers: response.headers,
     status: response.status,
-    data: response.body,
+    data: response.body
   };
 };
 
 const createUser = async ({ userName, password }: any): Promise<ApiResponse> => {
   const response = await client.post(`/Account/v1/User`, {
     userName,
-    password,
+    password
   });
 
   return {
     headers: transformHeaders(response.headers),
     status: response.status,
-    data: response.data,
+    data: response.data
   };
 };
 
 export default {
   get: getUser,
   create: createUser,
-  remove: removeUser,
+  remove: removeUser
 };

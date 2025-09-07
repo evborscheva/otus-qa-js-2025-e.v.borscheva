@@ -32,7 +32,7 @@ describe('Bookstore', () => {
     expect(response.data).toMatchObject({
       userId: userId,
       username: newUser.userName,
-      books: [],
+      books: []
     });
   });
 
