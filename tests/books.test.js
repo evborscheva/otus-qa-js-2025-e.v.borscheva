@@ -1,3 +1,4 @@
+// @ts-check
 import config from '../framework/config/configBookstore';
 import { BookService, AuthService } from '../framework';
 import { books } from '../framework/fixtures/Books.json';

@@ -1,3 +1,4 @@
+// @ts-check
 import { AuthService, UserService, UserFixture } from '../framework';
 
 describe('Bookstore', () => {
