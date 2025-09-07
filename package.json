@@ -6,7 +6,11 @@
   "scripts": {
     "test": "jest",
     "format": "prettier . --check",
-    "format:fix": "prettier . --write"
+    "format:fix": "prettier . --write",
+      "allure": "allure serve reports/allure-results",
+ "allure:ci": "allure generate reports/allure-results --clean --report-dir reports/allure-report",
+ "allure:ci:show": "allure open reports/allure-report",
+ "allure:history" : "if exist reports\\allure-report\\history (xcopy /E /I /Y reports\\allure-report\\history reports\\allure-results\\history) else (echo No history found)"
   },
   "repository": {
     "type": "git",
@@ -24,6 +28,8 @@
     "@babel/plugin-transform-modules-commonjs": "^7.27.1",
     "@babel/preset-env": "^7.28.0",
     "@faker-js/faker": "^10.0.0",
+    "allure-commandline": "^2.34.1",
+    "allure-jest": "^3.3.3",
     "axios": "^1.11.0",
     "babel-jest": "^30.0.5",
     "dotenv": "^17.2.2",

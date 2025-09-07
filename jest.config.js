@@ -139,7 +139,7 @@ const config = {
 
   // Allows you to use a custom runner instead of Jest's default test runner
   // runner: "jest-runner",
-  setupFiles: ['dotenv/config']
+  setupFiles: ['dotenv/config'],
 
   // The paths to modules that run some code to configure or set up the testing environment before each test
   // setupFiles: [],
@@ -202,6 +202,10 @@ const config = {
 
   // Whether to use watchman for file crawling
   // watchman: true,
+   testEnvironment: 'allure-jest/node',
+ testEnvironmentOptions: {
+ resultsDir: 'reports/allure-results'
+ }
 };
 
 module.exports = config;
