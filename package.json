@@ -14,7 +14,7 @@
     "allure:ci": "allure generate reports/allure-results --clean --report-dir reports/allure-report",
     "allure:ci:show": "allure open reports/allure-report",
     "allure:history": "if exist reports\\allure-report\\history (xcopy /E /I /Y reports\\allure-report\\history reports\\allure-results\\history) else (echo No history found)",
-    "type-check": "tsc -noEmit"
+    "type-check": "tsc --noEmit"
   },
   "repository": {
     "type": "git",
