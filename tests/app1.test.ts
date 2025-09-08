@@ -16,7 +16,7 @@ describe('Account Service', () => {
 
     expect(response.status).toBe(201);
 
-    const responseBody = await response.json();
+    const responseBody: any = await response.json();
 
     expect(responseBody).toHaveProperty('userID');
     expect(responseBody).toHaveProperty('username');
@@ -41,7 +41,7 @@ describe('Account Service', () => {
 
     expect(response.status).toBe(406);
 
-    const responseBody = await response.json();
+    const responseBody: any = await response.json();
 
     expect(responseBody).toHaveProperty('code');
     expect(responseBody).toHaveProperty('message');
@@ -64,7 +64,7 @@ describe('Account Service', () => {
 
     expect(response.status).toBe(400);
 
-    const responseBody = await response.json();
+    const responseBody: any = await response.json();
 
     expect(responseBody).toHaveProperty('code');
     expect(responseBody).toHaveProperty('message');
@@ -89,7 +89,7 @@ describe('Account Service', () => {
 
     expect(response.status).toBe(200);
 
-    const responseBody = await response.json();
+    const responseBody: any = await response.json();
 
     expect(responseBody).toHaveProperty('token');
     expect(responseBody).toHaveProperty('expires');
@@ -116,7 +116,7 @@ describe('Account Service', () => {
 
     expect(response.status).toBe(400);
 
-    const responseBody = await response.json();
+    const responseBody: any = await response.json();
 
     expect(responseBody).toHaveProperty('code');
     expect(responseBody).toHaveProperty('message');
@@ -139,7 +139,7 @@ describe('Account Service', () => {
 
     expect(response.status).toBe(200);
 
-    const responseBody = await response.json();
+    const responseBody: any = await response.json();
 
     expect(responseBody).toHaveProperty('token');
     expect(responseBody).toHaveProperty('expires');

@@ -10,7 +10,7 @@ const generateToken = async ({ userName, password }: any) => {
   return {
     headers: response.headers,
     status: response.status,
-    data: await response.json()
+    data: (await response.json()) as any
   };
 };
 
