@@ -7,13 +7,18 @@
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-   "module": "commonjs",
-    "moduleResolution": "node", // Для разрешения модулей в стиле Node.js
-    "esModuleInterop": true, // Для совместимости с ES-модулями
+    "module": "commonjs",
+    "moduleResolution": "node",
+    // Для разрешения модулей в стиле Node.js
+    "esModuleInterop": true,
+    // Для совместимости с ES-модулями
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
     "target": "es2016",
-    "types": ["jest","node"],
+    "types": [
+      "jest",
+      "node"
+    ],
     "resolveJsonModule": true,
     // For nodejs:
     // "lib": ["esnext"],
@@ -22,13 +27,11 @@
 
     // Other Outputs
     "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
-
+    "declaration": false,
+    "declarationMap": false,
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
-
     // Style Options
     // "noImplicitReturns": true,
     // "noImplicitOverride": true,
