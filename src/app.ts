@@ -3,7 +3,7 @@
  * @param {string} name
  * @returns {boolean}
  */
-export const nameIsValid = name => typeof name === 'string' && name.length >= 2 && /^[a-z]+$/.test(name);
+export const nameIsValid = (name: any) => typeof name === 'string' && name.length >= 2 && /^[a-z]+$/.test(name);
 
 /**
  * Удаление пробелов из строки
@@ -11,7 +11,7 @@ export const nameIsValid = name => typeof name === 'string' && name.length >= 2 
  * @param {string} text
  * @returns {string}
  */
-export const fullTrim = text => (text ?? '').replace(/\s+/g, '');
+export const fullTrim = (text: any) => (text ?? '').replace(/\s+/g, '');
 
 /**
  * Подсчёт суммы заказа
@@ -27,7 +27,12 @@ export const fullTrim = text => (text ?? '').replace(/\s+/g, '');
  * @example getTotal([{ price: 10, quantity: 10 }], 10) // 90
  * @example getTotal([{ price: 10, quantity: 10 }], 100) // 0
  */
-export const getTotal = (items = [], discount = 0) => {
+interface Item {
+  price: number;
+  quantity: number;
+}
+
+export const getTotal = (items: Item[] = [], discount = 0) => {
   if (typeof discount !== 'number') {
     throw new Error('Скидка должна быть числом');
   }

@@ -2,7 +2,7 @@ import client from './client.js';
 import config from '../config/configBookstore.js';
 import supertest from 'supertest';
 
-const getUser = async ({ userId, token }) => {
+const getUser = async ({ userId, token }: any) => {
   const response = await client.get(`/Account/v1/User/${userId}`, {
     headers: {
       Authorization: `Bearer ${token}`
@@ -16,7 +16,7 @@ const getUser = async ({ userId, token }) => {
   };
 };
 
-const removeUser = async ({ userId, token }) => {
+const removeUser = async ({ userId, token }: any) => {
   const response = await supertest(config.baseURL)
     .delete(`/Account/v1/User/${userId}`)
     .set('Authorization', `Bearer ${token}`);
@@ -27,7 +27,7 @@ const removeUser = async ({ userId, token }) => {
   };
 };
 
-const createUser = async ({ userName, password }) => {
+const createUser = async ({ userName, password }: any) => {
   const response = await client.post(`/Account/v1/User`, {
     userName,
     password

@@ -1,9 +1,9 @@
 import { AuthService, UserService, UserFixture } from '../framework';
 
 describe('Bookstore', () => {
-  let token;
-  let userId;
-  let newUser;
+  let token: any;
+  let userId: any;
+  let newUser: any;
 
   beforeAll(async () => {
     newUser = UserFixture.generateUserCredentials();

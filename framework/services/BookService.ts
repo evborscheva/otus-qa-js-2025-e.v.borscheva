@@ -1,8 +1,14 @@
 import supertest from 'supertest';
 import config from '../config/configBookstore';
 import client from './client.js';
+interface ReplaceBookParams {
+  userId: string;
+  fromIsbn: string;
+  toIsbn: string;
+  token: string;
+}
 
-const replaceBook = async ({ userId, fromIsbn, toIsbn, token }) => {
+const replaceBook = async ({ userId, fromIsbn, toIsbn, token }: ReplaceBookParams) => {
   const response = await client.put(
     `/BookStore/v1/Books/${fromIsbn}`,
     {
@@ -23,10 +29,12 @@ const replaceBook = async ({ userId, fromIsbn, toIsbn, token }) => {
   };
 };
 
-const addListOfBooks = async ({ userId, isbns, token }) => {
+const addListOfBooks = async ({ userId, isbns, token }: any) => {
   const payload = {
     userId,
-    collectionOfIsbns: isbns.map(isbn => ({ isbn }))
+    collectionOfIsbns: isbns.map((isbn: any) => ({
+      isbn
+    }))
   };
 
   const response = await supertest(config.baseURL)
@@ -41,7 +49,7 @@ const addListOfBooks = async ({ userId, isbns, token }) => {
   };
 };
 
-const removeBook = async ({ isbn, userId, token }) => {
+const removeBook = async ({ isbn, userId, token }: any) => {
   const response = await fetch(`${config.baseURL}/BookStore/v1/Book`, {
     method: 'DELETE',
     headers: {
@@ -58,7 +66,7 @@ const removeBook = async ({ isbn, userId, token }) => {
   };
 };
 
-const getBook = async isbn => {
+const getBook = async (isbn: any) => {
   const response = await client.get('/BookStore/v1/Book', {
     params: {
       ISBN: isbn
@@ -72,14 +80,14 @@ const getBook = async isbn => {
   };
 };
 
-const removeAllBooks = async ({ userId, token }) => {
+const removeAllBooks = async ({ userId, token }: any) => {
   const response = await supertest(config.baseURL)
     .delete(`/BookStore/v1/Books?UserId=${userId}`)
     .set('Authorization', `Bearer ${token}`);
   return {
     headers: response.headers,
     status: response.status,
-    data: response.status === 204 ? {} : await response.json()
+    data: response.status === 204 ? {} : await response.body
   };
 };
 
