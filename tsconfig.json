@@ -12,8 +12,8 @@
     "esModuleInterop": true, // Для совместимости с ES-модулями
     "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
-    "target": "es2016",
-    "types": ["jest","node"],
+    "target": "es2022",
+   // "types": ["jest","node"],
     "resolveJsonModule": true,
     // For nodejs:
     // "lib": ["esnext"],
@@ -21,9 +21,9 @@
     // and npm install -D @types/node
 
     // Other Outputs
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
+    "sourceMap": false,
+    "declaration": false,
+    "declarationMap": false,
 
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,

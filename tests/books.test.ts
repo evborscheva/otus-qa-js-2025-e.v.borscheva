@@ -82,7 +82,7 @@ describe('Books', () => {
     }
   ];
 
-  (test.each(data)('$name', async ({ isbns, expectedStatus, result }: any) => {
+  test.each(data)('$name', async ({ isbns, expectedStatus, result }: any) => {
     const response = await BookService.addList({
       userId,
       isbns,
@@ -91,11 +91,12 @@ describe('Books', () => {
 
     expect(response.data).toEqual(result);
     expect(response.status).toBe(expectedStatus);
-  }),
-    test('Удаление книги из коллекции пользователя', async () => {
-      const response = await BookService.remove({ isbn, userId, token });
-      expect(response.status).toBe(204);
-    }));
+  });
+
+  test('Удаление книги из коллекции пользователя', async () => {
+    const response = await BookService.remove({ isbn, userId, token });
+    expect(response.status).toBe(204);
+  });
 
   test('Заменить книгу в коллекции пользователя', async () => {
     const response = await BookService.replace({
@@ -112,7 +113,7 @@ describe('Books', () => {
   });
 
   afterAll(async () => {
-    const response = await BookService.removeAll({
+    await BookService.removeAll({
       userId,
       token
     });
