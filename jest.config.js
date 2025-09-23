@@ -36,8 +36,9 @@ const config = {
   transform: {
     '^.+\\.jsx?$': 'babel-jest'
   },
+  transformIgnorePatterns: ['node_modules/(?!(@faker-js/faker)/)'],
   testEnvironment: 'node',
-  moduleFileExtensions: ['js', 'json', 'jsx']
+  moduleFileExtensions: ['js', 'json', 'jsx'],
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [
@@ -138,6 +139,7 @@ const config = {
 
   // Allows you to use a custom runner instead of Jest's default test runner
   // runner: "jest-runner",
+  setupFiles: ['dotenv/config']
 
   // The paths to modules that run some code to configure or set up the testing environment before each test
   // setupFiles: [],
