@@ -32,7 +32,7 @@ interface Item {
   quantity: number;
 }
 
-export const getTotal = (items: Item[] = [], discount = 0) => {
+export const getTotal = (items: Item[] = [], discount: any) => {
   if (typeof discount !== 'number') {
     throw new Error('Скидка должна быть числом');
   }

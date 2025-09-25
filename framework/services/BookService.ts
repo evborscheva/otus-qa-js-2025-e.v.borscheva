@@ -1,6 +1,6 @@
 import supertest from 'supertest';
 import config from '../config/configBookstore';
-import client from './client.js';
+import client from './client';
 interface ReplaceBookParams {
   userId: string;
   fromIsbn: string;
