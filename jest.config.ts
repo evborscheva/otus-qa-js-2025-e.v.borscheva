@@ -34,11 +34,11 @@ const config = {
   // Indicates which provider should be used to instrument code for coverage
   coverageProvider: 'v8',
   transform: {
-    '^.+\\.jsx?$': 'babel-jest'
+    '^.+\\.(ts|tsx|js|jsx)$': 'babel-jest'
   },
-  transformIgnorePatterns: ['node_modules/(?!(@faker-js/faker)/)'],
+   transformIgnorePatterns: ['node_modules/(?!(@faker-js/faker|core-js)/)'],
   testEnvironment: 'node',
-  moduleFileExtensions: ['js', 'json', 'jsx'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
 
   // A list of reporter names that Jest uses when writing coverage reports
   // coverageReporters: [

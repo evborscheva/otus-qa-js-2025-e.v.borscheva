@@ -1,1 +1,1 @@
-export * as UserFixture from './userFixture.js';
+export * as UserFixture from './userFixture';

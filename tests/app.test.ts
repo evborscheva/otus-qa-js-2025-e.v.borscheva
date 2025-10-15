@@ -1,4 +1,4 @@
-import { nameIsValid, fullTrim, getTotal } from '../src/app.js';
+import { nameIsValid, fullTrim, getTotal } from '../src/app';
 
 describe('app.js', () => {
   describe('function fullTrim', () => {
@@ -139,7 +139,7 @@ describe('app.js', () => {
         { price: 10, quantity: 5 },
         { price: 50, quantity: 1 }
       ];
-      const discount = 5;
+      const discount = '5';
       expect(() => getTotal(items, discount)).toThrow('Скидка должна быть числом');
     });
 

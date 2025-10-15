@@ -1,5 +1,5 @@
-import client from './client.js';
-import config from '../config/configBookstore.js';
+import client from './client';
+import config from '../config/configBookstore';
 import supertest from 'supertest';
 
 const getUser = async ({ userId, token }: any) => {
