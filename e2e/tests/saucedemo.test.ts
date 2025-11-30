@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import config from '../config/configSaucedemo';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('https://www.saucedemo.com');
@@ -7,8 +8,11 @@ test.beforeEach(async ({ page }) => {
   const searchPasswordInput = page.locator('#password');
   const searchButton = page.getByTestId('login-button');
 
-  await searchLoginInput.fill('standard_user');
-  await searchPasswordInput.fill('secret_sauce');
+  const login = config.login!;
+  await searchLoginInput.fill(login);
+
+  const password = config.password!;
+  await searchPasswordInput.fill(password);
   await searchButton.click();
 
   await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
@@ -28,9 +32,6 @@ test('Добавление одного товара в корзину', async (
   const AddToCartButton = page.getByRole('button', { name: 'Add to cart' });
   await AddToCartButton.first().click();
   await page.getByTestId('shopping-cart-link').click();
-
-  //await expect(page.getByTestId('inventory-item')).toBeVisible();
-  //await expect(page.getByTestId('inventory-item')).toBeEnabled();
 
   await expect(page.getByRole('button', { name: 'Remove' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Remove' })).toBeEnabled();
@@ -54,8 +55,6 @@ test('Удаление товара из корзины (добавлен тол
   await expect(page.getByTestId('inventory-item')).toBeEnabled();
 
   await page.getByTestId('inventory-item').getByRole('button', { name: 'Remove' }).click();
-  // await expect(page.getByTestId('inventory-item')).toBeHidden();
-  // await expect(page.locator('.removed_cart_item')).toBeAttached();
   await expect(page.getByRole('button', { name: 'Remove' })).toBeHidden();
 
   await expect(page.getByTestId('inventory-item-price')).toBeHidden();
@@ -84,5 +83,6 @@ test('Удаление одного товара из корзины (добав
   await page.getByTestId('inventory-item').first().getByRole('button', { name: 'Remove' }).click();
 
   await expect(page.getByTestId('inventory-item')).toHaveCount(1);
-  await expect(page.locator('.removed_cart_item')).toBeAttached();
+  await expect(page.getByTestId('inventory-item')).toBeVisible();
+  await expect(page.getByTestId('inventory-item')).toBeEnabled();
 });

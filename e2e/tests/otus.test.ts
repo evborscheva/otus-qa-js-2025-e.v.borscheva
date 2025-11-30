@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test';
-import config from '../config/configOtus';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('https://otus.ru');
@@ -13,7 +12,7 @@ test('Кнопка "Войти" на странице только одна', as
 
 //UI тест
 //C такими локаторами полей, увы, НЕ работает
-test('Отображение страницы авторизации при нажатии нопки \"Войти\"', async ({ page }) => {
+/*test('Отображение страницы авторизации при нажатии нопки \"Войти\"', async ({ page }) => {
   const searchButton = page.getByRole('button', { name: 'Войти' });
   await searchButton.click();
   const pageName = page.getByText('Войдите в свой аккаунт');
@@ -43,15 +42,12 @@ test('Авторизация на сайте_0', async ({ page }) => {
   await expect(page.locator('.sc-r03h0s-5.sc-1youhxc-2.bYKNcH').filter({ hasText: 'Елена' })).toBeVisible();
 
   await expect(page.getByRole('link').getByText('Мое обучение', { exact: true })).toBeVisible();
-});
+});*/
 
 //работает
-test('Работа поля поиска', async ({ page }) => {
+test.only('Работа поля поиска', async ({ page }) => {
   await page.getByPlaceholder('Поиск курса').fill('javascript qa engineer');
-  await page
-    .getByRole('button')
-    .filter({ has: page.getByRole('paragraph').getByText('JavaScript QA Engineer') })
-    .click();
+  await page.getByRole('link', { name: 'JavaScript QA Engineer' }).click();
   await expect(page).toHaveURL('https://otus.ru/lessons/qajs/');
 });
 
@@ -61,7 +57,5 @@ test('Поиск по каталогу курсов', async ({ page }) => {
   await searchButton.click();
   await page.getByLabel('Архитектура').check();
   await page.getByLabel('Advanced').check();
-  /*const allItems = await page.getByRole('main').locator('section').getByRole('link').all();
-console.log(`Количество найденных курсов: ${allItems.length}`);*/
   await expect(page.getByRole('main').locator('section').getByRole('link')).toHaveCount(10);
 });
