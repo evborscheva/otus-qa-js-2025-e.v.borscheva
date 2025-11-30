@@ -45,7 +45,7 @@ test('Авторизация на сайте_0', async ({ page }) => {
 });*/
 
 //работает
-test.only('Работа поля поиска', async ({ page }) => {
+test('Работа поля поиска', async ({ page }) => {
   await page.getByPlaceholder('Поиск курса').fill('javascript qa engineer');
   await page.getByRole('link', { name: 'JavaScript QA Engineer' }).click();
   await expect(page).toHaveURL('https://otus.ru/lessons/qajs/');
