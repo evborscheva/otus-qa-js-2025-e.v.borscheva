@@ -1,7 +1,7 @@
 name: Playwright Tests
 env: 
-    TEST_SAUCEDEMO_LOGIN: ${{ secrets.TEST_SAUCEDEMO_LOGIN }}
-    TEST_SAUCEDEMO_PASSWORD: ${{ secrets.TEST_SAUCEDEMO_PASSWORD }}
+  TEST_SAUCEDEMO_LOGIN: ${{ secrets.TEST_SAUCEDEMO_LOGIN }}
+  TEST_SAUCEDEMO_PASSWORD: ${{ secrets.TEST_SAUCEDEMO_PASSWORD }}
 on:
   push:
     branches: [ main, master ]
@@ -22,9 +22,17 @@ jobs:
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: npx playwright test
-    - uses: actions/upload-artifact@v4
-      if: ${{ !cancelled() }}
+    - name: Upload HTML test report
+      if: always()
+      uses: actions/upload-artifact@v4
       with:
-        name: playwright-report
+        name: playwright-html-report
         path: playwright-report/
         retention-days: 30
+    - name: Upload test results (screenshots, traces, videos)
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: playwright-test-results
+        path: test-results/
+        retention-days: 3
