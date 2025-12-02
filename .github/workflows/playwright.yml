@@ -1,4 +1,7 @@
 name: Playwright Tests
+env: 
+    TEST_SAUCEDEMO_LOGIN: ${{ secrets.TEST_SAUCEDEMO_LOGIN }}
+    TEST_SAUCEDEMO_PASSWORD: ${{ secrets.TEST_SAUCEDEMO_PASSWORD }}
 on:
   push:
     branches: [ main, master ]
