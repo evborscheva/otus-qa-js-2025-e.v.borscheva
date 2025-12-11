@@ -13,7 +13,7 @@ test.beforeEach(async ({ page }) => {
 
   const password = config.password!;
   await searchPasswordInput.fill(password);
-  await searchButton.click()
+  await searchButton.click();
 
   /*await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');
   await expect(page.getByTestId('shopping-cart-link')).toBeVisible();*/

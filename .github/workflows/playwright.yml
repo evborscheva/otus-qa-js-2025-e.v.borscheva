@@ -2,6 +2,8 @@ name: Playwright Tests
 env: 
   TEST_SAUCEDEMO_LOGIN: ${{ secrets.TEST_SAUCEDEMO_LOGIN }}
   TEST_SAUCEDEMO_PASSWORD: ${{ secrets.TEST_SAUCEDEMO_PASSWORD }}
+  TEST_DEMOBLAZE_LOGIN: ${{ secrets.TEST_DEMOBLAZE_LOGIN }}
+  TEST_DEMOBLAZE_PASSWORD: ${{ secrets.TEST_DEMOBLAZE_PASSWORD }}
 on:
   push:
     branches: [ main, master ]
